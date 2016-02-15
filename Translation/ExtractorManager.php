@@ -145,6 +145,10 @@ class ExtractorManager implements ExtractorInterface
 
             $this->logger->info(sprintf('Extracting messages with custom extractor : %s', $alias));
 
+            if (method_exists($extractor,'setDirectory')) {
+                $extractor->setDirectory($directory);
+            }
+                
             $catalogue->merge($extractor->extract());
         }
 
